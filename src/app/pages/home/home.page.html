@@ -1,0 +1,20 @@
+<!-- src/app/pages/home/home.page.html -->
+
+<ion-header>
+    <ion-toolbar>
+      <ion-title>
+        To-Do List
+      </ion-title>
+    </ion-toolbar>
+  </ion-header>
+  
+  <ion-content>
+    <!-- Formulario para agregar tarea -->
+    <ion-item>
+      <ion-label position="floating">Nueva Tarea</ion-label>
+      <ion-input [(ngModel)]="taskName" placeholder="Escribe tu tarea"></ion-input>
+    </ion-item>
+  
+    <ion-button expand="full" (click)="addTask()">Agregar tarea</ion-button>
+  </ion-content>
+  
