@@ -1,5 +1,3 @@
-// src/app/services/task.service.ts
-
 import { Injectable } from '@angular/core';
 import { Storage } from '@ionic/storage-angular';
 
@@ -7,23 +5,20 @@ import { Storage } from '@ionic/storage-angular';
   providedIn: 'root',
 })
 export class TaskService {
-  private storage!: Storage;  // Usamos el operador de aserción no nula para indicar que se inicializará después.
-
-  constructor(private storageService: Storage) {
-    this.init();
+  constructor(private storage: Storage) {
+    this.storage.create();  // Inicializa el almacenamiento (esto es importante)
   }
 
-  private async init() {
-    const storage = await this.storageService.create();
-    this.storage = storage;
+  // Guardar una tarea en el almacenamiento
+  async addTask(task: string): Promise<void> {
+    const tasks = await this.getTasks();
+    tasks.push(task);
+    await this.storage.set('tasks', tasks);
   }
 
-  // Solo agregar una nueva tarea
-  addTask(task: string) {
-    this.storage.get('tasks').then((tasks) => {
-      const tasksList = tasks || [];
-      tasksList.push({ name: task });
-      this.storage.set('tasks', tasksList);
-    });
+  // Obtener todas las tareas almacenadas
+  async getTasks(): Promise<string[]> {
+    const tasks = await this.storage.get('tasks');
+    return tasks || [];  // Retorna un arreglo vacío si no hay tareas
   }
 }

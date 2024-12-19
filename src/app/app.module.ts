@@ -1,12 +1,9 @@
-// src/app/app.module.ts
 import { NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
-import { RouteReuseStrategy } from '@angular/router';
-import { IonicModule, IonicRouteStrategy } from '@ionic/angular';
-import { AppComponent } from './app.component';
+import { IonicModule } from '@ionic/angular';
 import { AppRoutingModule } from './app-routing.module';
-
-// No es necesario importar HomePageModule si HomePage es standalone
+import { AppComponent } from './app.component';
+import { IonicStorageModule } from '@ionic/storage-angular';  // Asegúrate de importar esto
 
 @NgModule({
   declarations: [AppComponent],
@@ -14,8 +11,8 @@ import { AppRoutingModule } from './app-routing.module';
     BrowserModule,
     IonicModule.forRoot(),
     AppRoutingModule,
+    IonicStorageModule.forRoot()  // Asegúrate de agregar esto
   ],
-  providers: [{ provide: RouteReuseStrategy, useClass: IonicRouteStrategy }],
   bootstrap: [AppComponent],
 })
 export class AppModule {}

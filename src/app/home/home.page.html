@@ -1,15 +1,21 @@
-<!-- src/app/home/home.page.html -->
 <ion-header>
   <ion-toolbar>
-    <ion-title>Mi Lista de Tareas</ion-title>
+    <ion-title>Lista de Tareas</ion-title>
   </ion-toolbar>
 </ion-header>
 
 <ion-content>
+  <!-- Formulario para agregar tarea -->
   <ion-item>
     <ion-label position="floating">Nueva Tarea</ion-label>
     <ion-input [(ngModel)]="taskName" placeholder="Escribe tu tarea"></ion-input>
   </ion-item>
-
   <ion-button expand="full" (click)="addTask()">Agregar tarea</ion-button>
+
+  <!-- Mostrar la lista de tareas -->
+  <ion-list>
+    <ion-item *ngFor="let task of taskList">
+      <ion-label>{{ task }}</ion-label>
+    </ion-item>
+  </ion-list>
 </ion-content>
